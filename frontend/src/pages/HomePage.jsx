@@ -29,7 +29,7 @@ const HomePage = () => {
         for (const genre of filtered) {
           const result = await fetchMoviesByGenre(genre.id);
           data[genre.name] = {
-            movies: result.movies.slice(0, 5),
+            movies: result.movies.slice(0, 12),
             total: result.total,
           };
         }
@@ -44,8 +44,6 @@ const HomePage = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Film efter genre</h1>
-
       {genres.map((genre) => (
         <GenreSection
           key={genre.id}

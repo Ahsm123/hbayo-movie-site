@@ -11,12 +11,13 @@ export async function fetchGenres() {
 
 export async function fetchMoviesByGenre(genreId, page = 1) {
   const res = await fetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=da-DK&sort_by=popularity.desc&page=${page}`
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
   );
   const data = await res.json();
+
   return {
-    total: data.total_results,
     movies: data.results,
+    total: data.total_results,
   };
 }
 

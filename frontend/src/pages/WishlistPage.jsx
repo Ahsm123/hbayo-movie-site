@@ -6,7 +6,7 @@ const WishlistPage = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">🎁 Min ønskeliste</h1>
+      <h1 className="text-xl font-semibold text-white">Ønskeliste</h1>
 
       {wishlist.length === 0 ? (
         <p className="text-gray-500">Ingen film på listen endnu.</p>
@@ -24,7 +24,7 @@ const WishlistPage = () => {
               </Link>
               <button
                 onClick={() => removeFromWishlist(movie.id)}
-                className="mt-2 w-full bg-red-600 hover:bg-red-700 text-white text-sm py-1 rounded"
+                className="btn-green"
               >
                 Fjern
               </button>

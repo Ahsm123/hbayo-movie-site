@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import MovieCard from "./MovieCard";
 
-export default function GenreSection({ genre, movies, total }) {
+export default function GenreSection({ genre, movies, total, onLoadMore }) {
+  const loaderRef = useRef(null);
+
+  useEffect(() => {
+    if (!onLoadMore) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          onLoadMore();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [onLoadMore]);
+
   return (
-    <div className="genre-section">
-      <div className="genre-header">
-        <h2>
+    <div className="mb-10">
+      <div className="section-header">
+        <h2 className="text-xl font-semibold text-white">
           {genre.name} ({total})
         </h2>
-        <a href={`/movies?genre=${genre.name}`}>Se alle</a>
+        <Link
+          to={`/movies?genre=${genre.name}`}
+          className="text-sm text-blue-400 hover:underline"
+        >
+          <button className="btn-green">Se alle</button>
+        </Link>
       </div>
 
       <div className="movie-list">
         {movies.map((movie) => (
-          <Link
-            to={`/movies/${movie.id}`}
-            key={movie.id}
-            className="movie-card"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
-          </Link>
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
+
+      {onLoadMore && <div ref={loaderRef} className="h-10" />}
     </div>
   );
 }

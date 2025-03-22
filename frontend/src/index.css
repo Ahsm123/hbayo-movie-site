@@ -1,12 +1,106 @@
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #0f0f0f; /* fallback for bg-zinc-900 */
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    @apply w-full min-h-screen;
+  }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: linear-gradient(to bottom, #1d1f1f, #2e2e2e);
+    color: #222;
+  }
+
+  h1,
+  h2 {
+    color: #2f3542;
+  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* components */
+@layer components {
+  .btn-primary {
+    @apply mt-5 px-4 py-3 bg-red-600 text-white font-bold text-base rounded-full transition hover:bg-red-700;
+  }
+
+  .navbar {
+    @apply sticky top-0 z-50 flex justify-between items-center bg-sky-500 text-white px-5 py-3;
+  }
+
+  .navbar-links {
+    @apply flex gap-4 list-none m-0 p-0;
+  }
+
+  .nav-link {
+    @apply text-white font-bold no-underline transition;
+  }
+
+  .nav-link:hover {
+    @apply text-sky-400;
+  }
+
+  .section-header {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .movie-list {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .movie-grid {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .movie-list-page {
+    @apply p-5;
+  }
+
+  .movie-detail-poster {
+    @apply w-72 rounded-lg shadow-lg;
+  }
+
+  .movie-detail-info {
+    @apply max-w-xl flex-1 space-y-4;
+  }
+
+  .read-the-docs {
+    @apply text-gray-400;
+  }
+
+  .btn-green {
+    @apply mt-5 px-4 py-3 bg-sky-500 text-white font-bold text-base rounded-full transition hover:bg-green-700;
+  }
+}
+
+/* animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}

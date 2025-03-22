@@ -32,44 +32,79 @@ const MovieDetailPage = () => {
       : addToWishlist(movie);
   };
 
+  const trailer = movie?.videos?.results?.find(
+    (v) => v.type === "Trailer" && v.site === "YouTube"
+  );
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-        className="w-full md:w-64 rounded shadow"
-      />
+    <div
+      className="relative bg-cover bg-center min-h-screen before:absolute before:inset-0 before:bg-gradient-to-b before:from-black/80 before:to-black/70"
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+      }}
+    >
+      <div className="bg-black/20 max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row gap-8 backdrop-blur-md shadow-lg">
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+          className="w-full md:w-64 shadow"
+        />
 
-      <div className="flex-1 space-y-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">{movie.title}</h1>
-          <button
-            onClick={toggleWishlist}
-            className="text-3xl hover:scale-110 transition"
-            title="Tilføj til ønskeliste"
-          >
-            {isInWishlist(movie.id) ? "⭐" : "☆"}
-          </button>
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold flex items-center gap-2 text-white">
+              {movie.title}
+              <button
+                onClick={toggleWishlist}
+                className="text-2xl hover:scale-110 transition text-white"
+                title="Tilføj til ønskeliste"
+              >
+                {isInWishlist(movie.id) ? "⭐" : "☆"}
+              </button>
+            </h1>
+          </div>
+
+          <p className="text-white">
+            <strong>Udgivelsesår:</strong> {movie.release_date.slice(0, 4)}
+          </p>
+
+          <p className="text-white">
+            <strong>Genre:</strong> {movie.genres.map((g) => g.name).join(", ")}
+          </p>
+
+          <p className="text-white">
+            <strong>IMDb:</strong>{" "}
+            {movie.vote_average
+              ? `${movie.vote_average}/10`
+              : "Ikke tilgængelig"}
+          </p>
+
+          <p className="text-white">{movie.overview}</p>
+
+          <p className="text-white">
+            <strong>Instruktør:</strong>{" "}
+            {directors.map((d) => d.name).join(", ")}
+          </p>
+
+          <p className="text-white">
+            <strong>Skuespillere:</strong>{" "}
+            {cast
+              .map((actor) => `${actor.name} (${actor.character})`)
+              .join(", ")}
+          </p>
+
+          {trailer && (
+            <div className="w-full aspect-video mt-6 rounded overflow-hidden shadow-lg">
+              <iframe
+                src={`https://www.youtube.com/embed/${trailer.key}`}
+                title="Trailer"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
         </div>
-
-        <p>
-          <strong>Udgivelsesår:</strong> {movie.release_date.slice(0, 4)}
-        </p>
-
-        <p>
-          <strong>Genre:</strong> {movie.genres.map((g) => g.name).join(", ")}
-        </p>
-
-        <p>{movie.overview}</p>
-
-        <p>
-          <strong>Instruktør:</strong> {directors.map((d) => d.name).join(", ")}
-        </p>
-
-        <p>
-          <strong>Skuespillere:</strong>{" "}
-          {cast.map((actor) => `${actor.name} (${actor.character})`).join(", ")}
-        </p>
       </div>
     </div>
   );

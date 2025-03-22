@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import MovieCard from "../components/MovieCard";
 import { fetchGenres, fetchMoviesByGenre } from "../services/tmdbService";
-import { Link } from "react-router-dom";
 
 const MovieListPage = () => {
   const [searchParams] = useSearchParams();
@@ -11,6 +11,8 @@ const MovieListPage = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+
+  const loaderRef = useRef(null);
 
   useEffect(() => {
     const loadGenre = async () => {
@@ -27,7 +29,6 @@ const MovieListPage = () => {
     const loadMovies = async () => {
       if (!genreId) return;
       const result = await fetchMoviesByGenre(genreId, page);
-
       setMovies((prev) => [...prev, ...result.movies]);
       setTotal(result.total);
     };
@@ -35,36 +36,38 @@ const MovieListPage = () => {
     loadMovies();
   }, [genreId, page]);
 
-  const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
-  };
+  useEffect(() => {
+    if (!loaderRef.current || movies.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const target = loaderRef.current;
+    observer.observe(target);
+
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, [movies]);
 
   return (
-    <div className="movie-list-page">
-      <h1>Alle film i genre: {genreName}</h1>
-      <p>Total: {total}</p>
+    <div className="movie-list-page min-h-screen pb-16">
+      <h1 className="text-xl font-semibold text-white">{genreName}</h1>
+      <p className="text-l text-white">Total: {total}</p>
 
       <div className="movie-grid">
         {movies.map((movie) => (
-          <Link
-            to={`/movies/${movie.id}`}
-            key={movie.id}
-            className="movie-card"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
-          </Link>
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
 
-      {movies.length < total && (
-        <button onClick={handleLoadMore} className="load-more-btn">
-          Indlæs flere
-        </button>
-      )}
+      {movies.length < total && <div ref={loaderRef} className="h-10" />}
     </div>
   );
 };

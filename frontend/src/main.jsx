@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { WishlistProvider } from "./WishlistContext.jsx";
+import "@fontsource/inter";
 import "./index.css";
 import App from "./App.jsx";
 
