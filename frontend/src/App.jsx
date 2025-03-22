@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import './App.css'
+import "./App.css";
+import Layout from "./Layout";
 import HomePage from "./pages/HomePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import MovieListPage from "./pages/MovieListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { Children } from "react";
+import WishlistPage from "./pages/WishlistPage";
 
 const routes = [
   {
@@ -21,8 +23,12 @@ const routes = [
         element: <MovieListPage />,
       },
       {
-        path: "/movies/:name",
+        path: "/movies/:id",
         element: <MovieDetailPage />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistPage />,
       },
     ],
   },
