@@ -20,11 +20,11 @@ const GenreSection = ({ genre, movies, total }) => {
         </button>
       </div>
 
-      <div className="movie-row flex overflow-x-auto gap-3 pb-3 scroll-snap-x mandatory md:grid md:overflow-x-visible md:scroll-snap-type-none">
+      <div className="movie-row flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory md:grid md:overflow-x-visible md:snap-none md:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="group flex-shrink-0 w-36 scroll-snap-start md:w-full"
+            className="group flex-shrink-0 w-36 snap-start md:w-auto"
           >
             <MovieCard movie={movie} />
           </div>

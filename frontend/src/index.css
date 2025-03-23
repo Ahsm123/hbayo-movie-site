@@ -54,20 +54,19 @@
   }
 
   .movie-row {
-    @apply flex overflow-x-auto gap-3 pb-3 scroll-snap-x mandatory;
+    @apply flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory;
 
     @screen md {
-      @apply grid overflow-x-visible;
+      @apply grid overflow-x-visible snap-none;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      scroll-snap-type: none;
     }
   }
 
   .movie-item {
-    @apply flex-shrink-0 w-[150px] scroll-snap-start;
+    @apply flex-shrink-0 w-[150px] snap-start;
 
     @screen md {
-      @apply flex-shrink flex-grow-0 w-full scroll-snap-none;
+      @apply snap-none;
     }
   }
 
