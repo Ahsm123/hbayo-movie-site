@@ -1,20 +1,27 @@
-const BASE_URL = "https://api.themoviedb.org/3";
+// src/api/tmdb.js
+import axios from "axios";
+
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
+const tmdb = axios.create({
+  baseURL: "https://api.themoviedb.org/3",
+  params: {
+    api_key: API_KEY,
+    language: "da-DK",
+  },
+});
+
+// movies
+
 export async function fetchGenres() {
-  const res = await fetch(
-    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=da-DK`
-  );
-  const data = await res.json();
+  const { data } = await tmdb.get("/genre/movie/list");
   return data.genres;
 }
 
 export async function fetchMoviesByGenre(genreId, page = 1) {
-  const res = await fetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
-  );
-  const data = await res.json();
-
+  const { data } = await tmdb.get("/discover/movie", {
+    params: { with_genres: genreId, page },
+  });
   return {
     movies: data.results,
     total: data.total_results,
@@ -22,17 +29,56 @@ export async function fetchMoviesByGenre(genreId, page = 1) {
 }
 
 export async function fetchMovieDetails(id) {
-  const res = await fetch(
-    `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=da-DK`
-  );
-  if (!res.ok) throw new Error("Kunne ikke hente film");
-  return await res.json();
+  try {
+    const { data } = await tmdb.get(`/movie/${id}`);
+    return data;
+  } catch {
+    throw new Error("Kunne ikke hente film");
+  }
 }
 
 export async function fetchMovieCredits(id) {
-  const res = await fetch(
-    `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=da-DK`
-  );
-  if (!res.ok) throw new Error("Kunne ikke hente filmens credits");
-  return await res.json();
+  try {
+    const { data } = await tmdb.get(`/movie/${id}/credits`);
+    return data;
+  } catch {
+    throw new Error("Kunne ikke hente filmens credits");
+  }
+}
+
+// tv-shows
+
+// src/api/tmdb.js (or split into separate files/modules)
+
+export async function fetchTvGenres() {
+  const { data } = await tmdb.get("/genre/tv/list");
+  return data.genres;
+}
+
+export async function fetchTvShowsByGenre(genreId, page = 1) {
+  const { data } = await tmdb.get("/discover/tv", {
+    params: { with_genres: genreId, page },
+  });
+  return {
+    tvShows: data.results,
+    total: data.total_results,
+  };
+}
+
+export async function fetchTvShowDetails(id) {
+  try {
+    const { data } = await tmdb.get(`/tv/${id}`);
+    return data;
+  } catch {
+    throw new Error("Kunne ikke hente tv-serie");
+  }
+}
+
+export async function fetchTvShowCredits(id) {
+  try {
+    const { data } = await tmdb.get(`/tv/${id}/credits`);
+    return data;
+  } catch {
+    throw new Error("Kunne ikke hente tv-seriens credits");
+  }
 }
