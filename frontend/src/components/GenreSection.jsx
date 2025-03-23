@@ -1,53 +1,37 @@
-import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
-export default function GenreSection({ genre, movies, total, onLoadMore }) {
-  const loaderRef = useRef(null);
-
-  useEffect(() => {
-    if (!onLoadMore) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          onLoadMore();
-        }
-      },
-      { threshold: 1 }
-    );
-
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
-
-    return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
-      }
-    };
-  }, [onLoadMore]);
+const GenreSection = ({ genre, movies, total }) => {
+  const navigate = useNavigate();
 
   return (
     <div className="mb-10">
       <div className="section-header">
-        <h2 className="text-xl font-semibold text-white">
-          {genre.name} ({total})
-        </h2>
-        <Link
-          to={`/movies?genre=${genre.name}`}
-          className="text-sm text-blue-400 hover:underline"
+        <h2>{genre.name}</h2>
+        <button
+          className="btn-blue text-sm"
+          type="button"
+          onClick={() =>
+            navigate(`/movies?genre=${encodeURIComponent(genre.name)}`)
+          }
         >
-          <button className="btn-blue">Se alle</button>
-        </Link>
+          See all
+        </button>
       </div>
 
-      <div className="movie-list">
+      <div className="movie-row flex overflow-x-auto gap-3 pb-3 scroll-snap-x mandatory md:grid md:overflow-x-visible md:scroll-snap-type-none">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div
+            key={movie.id}
+            className="group flex-shrink-0 w-36 scroll-snap-start md:w-full"
+          >
+            <MovieCard movie={movie} />
+          </div>
         ))}
       </div>
-
-      {onLoadMore && <div ref={loaderRef} className="h-10" />}
     </div>
   );
-}
+};
+
+export default GenreSection;

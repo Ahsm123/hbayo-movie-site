@@ -53,6 +53,28 @@
     @apply flex justify-between items-center mb-2 text-zinc-100;
   }
 
+  .movie-row {
+    @apply flex overflow-x-auto gap-3 pb-3 scroll-snap-x mandatory;
+
+    @screen md {
+      @apply grid overflow-x-visible;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      scroll-snap-type: none;
+    }
+  }
+
+  .movie-item {
+    @apply flex-shrink-0 w-[150px] scroll-snap-start;
+
+    @screen md {
+      @apply flex-shrink flex-grow-0 w-full scroll-snap-none;
+    }
+  }
+
+  .movie-image {
+    @apply w-full rounded-lg object-cover transition duration-300 hover:scale-105;
+  }
+
   .movie-list {
     @apply flex flex-wrap gap-4;
   }
