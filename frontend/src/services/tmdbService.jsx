@@ -1,13 +1,14 @@
-// src/api/tmdb.js
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const API_READ_TOKEN = import.meta.env.VITE_TMDB_READ_TOKEN;
 
 const tmdb = axios.create({
   baseURL: "https://api.themoviedb.org/3",
+  headers: {
+    Authorization: `Bearer ${API_READ_TOKEN}`,
+  },
   params: {
-    api_key: API_KEY,
-    language: "da-DK",
+    // language: "da-DK",
   },
 });
 
@@ -16,6 +17,13 @@ const tmdb = axios.create({
 export async function fetchGenres() {
   const { data } = await tmdb.get("/genre/movie/list");
   return data.genres;
+}
+
+export async function searchMovies(query) {
+  const { data } = await tmdb.get("/search/movie", {
+    params: { query },
+  });
+  return data.results;
 }
 
 export async function fetchMoviesByGenre(genreId, page = 1) {
@@ -30,7 +38,11 @@ export async function fetchMoviesByGenre(genreId, page = 1) {
 
 export async function fetchMovieDetails(id) {
   try {
-    const { data } = await tmdb.get(`/movie/${id}`);
+    const { data } = await tmdb.get(`/movie/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    });
     return data;
   } catch {
     throw new Error("Kunne ikke hente film");

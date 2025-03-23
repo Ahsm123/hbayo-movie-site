@@ -4,14 +4,14 @@ import GenreSection from "../components/GenreSection";
 
 const genreNames = [
   "Action",
-  "Komedie",
+  "Comedy",
   "Thriller",
-  "Krig",
-  "Romantik",
+  "War",
+  "Romance",
   "Drama",
-  "Kriminalitet",
+  "Crimi",
   "Documentary",
-  "Gyser",
+  "Horror",
 ];
 
 const HomePage = () => {
@@ -29,7 +29,7 @@ const HomePage = () => {
         for (const genre of filtered) {
           const result = await fetchMoviesByGenre(genre.id);
           data[genre.name] = {
-            movies: result.movies.slice(0, 12),
+            movies: result.movies.slice(0, 11),
             total: result.total,
           };
         }

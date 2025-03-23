@@ -24,7 +24,7 @@ const WishlistPage = () => {
               </Link>
               <button
                 onClick={() => removeFromWishlist(movie.id)}
-                className="btn-green"
+                className="btn-blue"
               >
                 Fjern
               </button>

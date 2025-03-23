@@ -37,7 +37,7 @@ export default function GenreSection({ genre, movies, total, onLoadMore }) {
           to={`/movies?genre=${genre.name}`}
           className="text-sm text-blue-400 hover:underline"
         >
-          <button className="btn-green">Se alle</button>
+          <button className="btn-blue">Se alle</button>
         </Link>
       </div>
 
