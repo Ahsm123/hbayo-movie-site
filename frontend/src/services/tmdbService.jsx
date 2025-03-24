@@ -36,11 +36,21 @@ export async function fetchMoviesByGenre(genreId, page = 1) {
   };
 }
 
+export async function fetchSimilarMovies(id) {
+  try {
+    const { data } = await tmdb.get(`/movie/${id}/similar`);
+    return data.results; 
+  } catch {
+    throw new Error("Kunne ikke hente lignende film");
+  }
+}
+
+
 export async function fetchMovieDetails(id) {
   try {
     const { data } = await tmdb.get(`/movie/${id}`, {
       params: {
-        append_to_response: "videos",
+        append_to_response: "videos"
       },
     });
     return data;
