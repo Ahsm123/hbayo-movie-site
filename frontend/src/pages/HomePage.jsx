@@ -1,55 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { fetchGenres, fetchMoviesByGenre } from "../services/tmdbService";
+import React from "react";
 import GenreSection from "../components/GenreSection";
-
-const genreNames = [
-  "Action",
-  "Comedy",
-  "Thriller",
-  "War",
-  "Romance",
-  "Drama",
-  "Crimi",
-  "Documentary",
-  "Horror",
-];
+import { useGenreMovies } from "../hooks/useGenreMovies";
 
 const HomePage = () => {
-  const [genres, setGenres] = useState([]);
-  const [moviesByGenre, setMoviesByGenre] = useState({});
+  const { selectedGenres, groupedMoviesByGenre } = useGenreMovies();
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const allGenres = await fetchGenres();
-        const filtered = allGenres.filter((g) => genreNames.includes(g.name));
-        setGenres(filtered);
-
-        const data = {};
-        for (const genre of filtered) {
-          const result = await fetchMoviesByGenre(genre.id);
-          data[genre.name] = {
-            movies: result.movies.slice(0, 11),
-            total: result.total,
-          };
-        }
-        setMoviesByGenre(data);
-      } catch (error) {
-        console.error("Fejl ved hentning af genre eller film:", error);
-      }
-    };
-
-    loadData();
-  }, []);
-
+  // viser en sektion med film fra hver genre
   return (
-    <div style={{ padding: "20px" }}>
-      {genres.map((genre) => (
+    <div className="p-5">
+      {selectedGenres.map((genre) => (
         <GenreSection
           key={genre.id}
           genre={genre}
-          movies={moviesByGenre[genre.name]?.movies || []}
-          total={moviesByGenre[genre.name]?.total || 0}
+          movies={groupedMoviesByGenre[genre.name]?.movies || []}
+          total={groupedMoviesByGenre[genre.name]?.total || 0}
         />
       ))}
     </div>

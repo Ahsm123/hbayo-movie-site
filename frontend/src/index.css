@@ -2,11 +2,10 @@
 
 @layer base {
   html,
-body,
-#root {
-  @apply w-full min-h-screen overflow-x-hidden bg-black;
-}
-
+  body,
+  #root {
+    @apply w-full min-h-screen overflow-x-hidden bg-black;
+  }
 
   body {
     font-family: "Inter", system-ui, sans-serif;
@@ -14,7 +13,9 @@ body,
     color: #e5e7eb;
   }
 
-  h1,
+  h1 {
+    @apply text-2xl font-bold text-white mb-2;
+  }
   h2 {
     @apply text-white font-bold;
   }
@@ -30,10 +31,37 @@ body,
 }
 
 @layer components {
-  .btn-primary {
-    @apply mt-5 px-4 py-3 bg-yellow-400 text-black font-bold text-base rounded-full transition hover:bg-yellow-300;
+  /* buttons */
+
+  .btn {
+    @apply font-bold px-4 py-2 rounded-full transition focus:outline-none focus:ring-2 focus:ring-yellow-500;
   }
 
+  .btn-yellow {
+    @apply bg-yellow-400 text-black hover:bg-yellow-300;
+  }
+
+  .btn-sm {
+    @apply text-sm py-1.5 px-3 text-sm;
+  }
+
+  .btn-md {
+    @apply text-base py-2 px-4;
+  }
+
+  .btn-lg {
+    @apply text-lg py-3 px-5;
+  }
+
+  .btn-shadow {
+    @apply shadow-md hover:shadow-lg;
+  }
+
+  .btn-scroll-top {
+    @apply fixed bottom-6 right-6;
+  }
+
+  /* navbar */
   .navbar {
     @apply sticky top-0 z-50 flex justify-between items-center;
   }
@@ -54,6 +82,19 @@ body,
     @apply flex justify-between items-center mb-2 text-zinc-100;
   }
 
+  /* movie */
+
+  .movie-list-page {
+    @apply p-6 text-white;
+  }
+
+  .movie-detail-poster {
+    @apply w-72 rounded-lg shadow-lg;
+  }
+
+  .movie-detail-info {
+    @apply max-w-xl flex-1 space-y-4 text-zinc-200;
+  }
   .movie-row {
     @apply flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory;
 
@@ -75,32 +116,13 @@ body,
     @apply w-full rounded-lg object-cover transition duration-300 hover:scale-105;
   }
 
-  .movie-list {
+  /* other */
+  .flex-grid {
     @apply flex flex-wrap gap-4;
   }
 
-  .movie-grid {
-    @apply flex flex-wrap gap-4;
-  }
-
-  .movie-list-page {
-    @apply p-6 text-white;
-  }
-
-  .movie-detail-poster {
-    @apply w-72 rounded-lg shadow-lg;
-  }
-
-  .movie-detail-info {
-    @apply max-w-xl flex-1 space-y-4 text-zinc-200;
-  }
-
-  .read-the-docs {
-    @apply text-zinc-500;
-  }
-
-  .btn-blue {
-    @apply bg-yellow-400 text-black font-bold py-2 px-4 rounded-full shadow-md transition transform hover:scale-105 hover:shadow-lg hover:bg-yellow-300;
+  .genre-dropdown {
+    @apply bg-zinc-800 text-white px-4 py-2 rounded border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-yellow-400;
   }
 }
 
@@ -122,10 +144,6 @@ body,
 
 .logo:hover {
   filter: drop-shadow(0 0 2em #facc15aa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @media (prefers-reduced-motion: no-preference) {
