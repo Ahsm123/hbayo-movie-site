@@ -17,3 +17,5 @@ const GenreSelector = ({ genres, selectedGenre, setSelectedGenre }) => (
     </select>
   </div>
 );
+
+export default GenreSelector;
