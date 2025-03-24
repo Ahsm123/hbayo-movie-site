@@ -8,7 +8,7 @@ export default function MovieCard({ movie, onRemove }) {
       {onRemove && (
         <button
           onClick={() => onRemove(movie.id)}
-          className="absolute top-1 right-1 z-10 bg-black/60 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition"
+          className="absolute top-1 right-1 z-10 bg-black/60 hover:bg-red-600 text-white rounded-full p-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition"
           aria-label="Fjern fra ønskeliste"
         >
           <HeartOff size={16} />

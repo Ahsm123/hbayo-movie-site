@@ -20,7 +20,7 @@ export const useGenreMovies = () => {
         for (const genre of filteredGenres) {
           const result = await fetchMoviesByGenre(genre.id);
           genreMovieMap[genre.name] = {
-            movies: result.movies.slice(0, 11),
+            movies: result.movies.slice(0, 30),
             total: result.total,
           };
         }

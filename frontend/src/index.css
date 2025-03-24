@@ -95,13 +95,16 @@
   .movie-detail-info {
     @apply max-w-xl flex-1 space-y-4 text-zinc-200;
   }
+
   .movie-row {
-    @apply flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory;
+    @apply flex gap-3 pb-3 snap-x snap-mandatory pr-6;
 
     @screen md {
       @apply grid overflow-x-visible snap-none;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
+
+    @apply overflow-x-auto; /* Mobile only */
   }
 
   .movie-item {
@@ -122,7 +125,21 @@
   }
 
   .genre-dropdown {
-    @apply bg-zinc-800 text-white px-4 py-2 rounded border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-yellow-400;
+    @apply bg-zinc-800 text-white text-sm px-4 py-2 rounded-lg border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 appearance-none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* edge */
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* chrome, safari */
   }
 }
 

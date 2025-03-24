@@ -1,6 +1,8 @@
 const GenreSelector = ({ genres, selectedGenre, setSelectedGenre }) => (
   <div className="mb-6 pt-4">
-    <h1>Genre</h1>
+    <label htmlFor="genre" className="block text-white font-semibold mb-2">
+      Genre
+    </label>
     <select
       id="genre"
       value={selectedGenre}
@@ -15,5 +17,3 @@ const GenreSelector = ({ genres, selectedGenre, setSelectedGenre }) => (
     </select>
   </div>
 );
-
-export default GenreSelector;
