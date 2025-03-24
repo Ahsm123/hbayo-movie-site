@@ -26,7 +26,7 @@ export default function MovieCard({ movie, onRemove }) {
           <p className="text-sm font-semibold px-2 leading-tight">
             {movie.title}
           </p>
-          <p className="text-xs mt-1 bg-yellow-400 text-black px-2 py-0.5 rounded-full font-bold shadow-sm">
+          <p className="text-xs mt-1 bg-yellow-400 text-black px-2 py-0.5 rounded font-bold shadow-sm">
             {movie.vote_average.toFixed(1)}
           </p>
         </div>
