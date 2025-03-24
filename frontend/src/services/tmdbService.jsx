@@ -39,18 +39,17 @@ export async function fetchMoviesByGenre(genreId, page = 1) {
 export async function fetchSimilarMovies(id) {
   try {
     const { data } = await tmdb.get(`/movie/${id}/similar`);
-    return data.results; 
+    return data.results;
   } catch {
     throw new Error("Kunne ikke hente lignende film");
   }
 }
 
-
 export async function fetchMovieDetails(id) {
   try {
     const { data } = await tmdb.get(`/movie/${id}`, {
       params: {
-        append_to_response: "videos"
+        append_to_response: "videos",
       },
     });
     return data;
@@ -65,42 +64,5 @@ export async function fetchMovieCredits(id) {
     return data;
   } catch {
     throw new Error("Kunne ikke hente filmens credits");
-  }
-}
-
-// tv-shows
-
-// src/api/tmdb.js (or split into separate files/modules)
-
-export async function fetchTvGenres() {
-  const { data } = await tmdb.get("/genre/tv/list");
-  return data.genres;
-}
-
-export async function fetchTvShowsByGenre(genreId, page = 1) {
-  const { data } = await tmdb.get("/discover/tv", {
-    params: { with_genres: genreId, page },
-  });
-  return {
-    tvShows: data.results,
-    total: data.total_results,
-  };
-}
-
-export async function fetchTvShowDetails(id) {
-  try {
-    const { data } = await tmdb.get(`/tv/${id}`);
-    return data;
-  } catch {
-    throw new Error("Kunne ikke hente tv-serie");
-  }
-}
-
-export async function fetchTvShowCredits(id) {
-  try {
-    const { data } = await tmdb.get(`/tv/${id}/credits`);
-    return data;
-  } catch {
-    throw new Error("Kunne ikke hente tv-seriens credits");
   }
 }
