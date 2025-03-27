@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchMoviesByGenre } from "../services/tmdbService";
 import { useFilteredGenres } from "../hooks/useFilteredGenres";
-import GenreSelector from "../components/GenreSelector";
 import MovieGrid from "../components/MovieGrid";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import LoaderSpinner from "../components/LoaderSpinner";
-import MovieFilters from "../components/MovieFilters";
+import FiltersBar from "../components/FiltersBar";
 
 const MovieListPage = () => {
   const [searchParams] = useSearchParams();
@@ -88,12 +87,10 @@ const MovieListPage = () => {
 
   return (
     <div className="movie-list-page min-h-screen pb-20 px-4 transition-colors duration-500">
-      <GenreSelector
+      <FiltersBar
         genres={genres}
         selectedGenre={selectedGenre}
         setSelectedGenre={setSelectedGenre}
-      />
-      <MovieFilters
         sortBy={sortBy}
         setSortBy={setSortBy}
         language={language}

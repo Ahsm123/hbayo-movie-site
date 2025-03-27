@@ -141,6 +141,10 @@
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* chrome, safari */
   }
+
+  .filter-select {
+    @apply bg-zinc-800 text-white text-sm px-4 py-2 rounded-lg border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-yellow-400;
+  }
 }
 
 @keyframes logo-spin {
