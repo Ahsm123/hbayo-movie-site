@@ -57,7 +57,6 @@ npm run dev
 
 ![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop.png)
 ![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop-addtowishlist.png)
-![Detaljer.Mobile](./frontend/screenshots/moviedetailpage-mobile.png)
 
 ### Ønskeliste
 
