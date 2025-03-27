@@ -25,8 +25,7 @@
 
 # 1. Clone repo
 
-git clone https://github.com/Ahsm123/wexo-movie-site.git
-cd wexo-movie-site
+git clone https://github.com/Ahsm123/hbayo-movie-site.git
 
 # 2. Installer dependencies i frontend folder
 
