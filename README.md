@@ -5,6 +5,8 @@
 - Browse film efter genre
 - Søgning og filtrering
 - Trailers og detaljeret info
+- Hover på film med titel + imdb rating
+- Fetcher film info på hover
 - Ønskeliste
 - Se lignende film
 - Mobilvenlig med sidescroll
