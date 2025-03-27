@@ -48,7 +48,6 @@ npm run dev
 ![Forside.Desktop](./frontend/screenshots/homepage-desktop.png)
 ![Forside.Mobile](./frontend/screenshots/homepage-mobile.png)
 
-
 ### Genreside
 
 ![Genreside.Desktop](./frontend/screenshots/movielistpage-desktop.png)
@@ -56,9 +55,8 @@ npm run dev
 ### Detaljer
 
 ![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop.png)
-![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop-addtowishlist.png)
+![Detaljer.Desktop](./frontend/screenshots/moviedetalpage-desktop-addtowishlist.png)
 
 ### Ønskeliste
 
 ![Wishlist](./frontend/screenshots/wishlistpage-desktop.png)
-
