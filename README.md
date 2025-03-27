@@ -28,7 +28,7 @@
 # 1. Clone repo
 ```bash
 git clone https://github.com/Ahsm123/hbayo-movie-site.git
-cd frontend
+cd hbayo-movie-site/frontend
 ```
 # 2. Installér dependencies
 ```bash
