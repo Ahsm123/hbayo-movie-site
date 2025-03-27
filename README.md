@@ -31,9 +31,9 @@ git clone https://github.com/Ahsm123/hbayo-movie-site.git
 
 npm install
 
-# 3. Lav .env fil og tilføj key
+# 3. Lav .env fil i frontend folder og tilføj key
 
-echo "VITE_TMDB_API_KEY=your_tmdb_api_key_here" > .env
+VITE_TMDB_API_KEY=your_tmdb_api_key_here"
 (tmdb v4 Read Access Token)
 
 # 4. Start dev server
