@@ -24,22 +24,23 @@
 ## Setup
 
 # 1. Clone repo
-
+```bash
 git clone https://github.com/Ahsm123/hbayo-movie-site.git
-
-# 2. Installér dependencies i frontend folder
-
+cd hbayo-movie-site/frontend
+```
+# 2. Installér dependencies
+```bash
 npm install
-
+```
 # 3. Lav .env fil i frontend folder og tilføj key
 
 VITE_TMDB_API_KEY=your_tmdb_api_key_here"
 (tmdb v4 Read Access Token)
 
 # 4. Start dev server
-
+```bash
 npm run dev
-
+```
 ## Eksempler
 
 ### Forside
