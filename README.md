@@ -27,7 +27,7 @@
 
 git clone https://github.com/Ahsm123/hbayo-movie-site.git
 
-# 2. Installer dependencies i frontend folder
+# 2. Installér dependencies i frontend folder
 
 npm install
 
