@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HeartOff } from "lucide-react";
+import { preloadMovieData } from "../utils/moviePreloadCache";
+import { fetchMovieDetails, fetchMovieCredits } from "../services/tmdbService";
 
 export default function MovieCard({ movie, onRemove }) {
+  const handleHover = () => {
+    preloadMovieData(movie.id, fetchMovieDetails, fetchMovieCredits);
+  };
+
   return (
-    <div className="relative w-36 overflow-hidden rounded-lg shadow-md group transition-transform hover:scale-105">
+    <div
+      onMouseEnter={handleHover}
+      className="relative w-full aspect-[2/3] overflow-hidden rounded-lg shadow-md group transition-transform hover:scale-105"
+    >
       {onRemove && (
         <button
           onClick={() => onRemove(movie.id)}
@@ -17,6 +26,7 @@ export default function MovieCard({ movie, onRemove }) {
 
       <Link to={`/movies/${movie.id}`}>
         <img
+          loading="lazy"
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           className="w-full h-auto object-cover rounded-lg"

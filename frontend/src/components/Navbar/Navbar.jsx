@@ -16,7 +16,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* mobile menu */}
+      {/* mobil */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-zinc-800 shadow-md z-50">
           <div className="flex flex-col px-6 py-4 gap-4">

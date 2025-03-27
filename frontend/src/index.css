@@ -120,8 +120,8 @@
   }
 
   /* other */
-  .flex-grid {
-    @apply flex flex-wrap gap-4;
+  .grid-grid {
+    @apply grid grid-cols-2 lg:grid-cols-10 gap-4;
   }
 
   .genre-dropdown {

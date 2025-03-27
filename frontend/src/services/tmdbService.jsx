@@ -26,10 +26,15 @@ export async function searchMovies(query) {
   return data.results;
 }
 
-export async function fetchMoviesByGenre(genreId, page = 1) {
+export async function fetchMoviesByGenre(genreId, page = 1, filters = {}) {
   const { data } = await tmdb.get("/discover/movie", {
-    params: { with_genres: genreId, page },
+    params: {
+      with_genres: genreId,
+      page,
+      ...filters,
+    },
   });
+
   return {
     movies: data.results,
     total: data.total_results,

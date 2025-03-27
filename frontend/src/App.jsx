@@ -5,8 +5,8 @@ import MovieDetailPage from "./pages/MovieDetailPage";
 import MovieListPage from "./pages/MovieListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AboutPage from "./pages/AboutPage";
-import { Children } from "react";
 import WishlistPage from "./pages/WishlistPage";
+import { Toaster } from "react-hot-toast";
 
 const routes = [
   {
@@ -44,6 +44,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }

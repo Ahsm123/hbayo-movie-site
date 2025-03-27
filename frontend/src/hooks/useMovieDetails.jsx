@@ -4,6 +4,7 @@ import {
   fetchMovieCredits,
   fetchSimilarMovies,
 } from "../services/tmdbService";
+import { getPreloadedMovieData } from "../utils/moviePreloadCache";
 
 // henter detaljer om en film + relaterede data
 export const useMovieDetails = (id) => {
@@ -15,10 +16,19 @@ export const useMovieDetails = (id) => {
 
   useEffect(() => {
     const loadData = async () => {
-      const movieData = await fetchMovieDetails(id);
-      setMovie(movieData);
+      const cached = getPreloadedMovieData(id);
 
-      const creditData = await fetchMovieCredits(id);
+      let movieData, creditData;
+
+      if (cached) {
+        movieData = cached.details;
+        creditData = cached.credits;
+      } else {
+        movieData = await fetchMovieDetails(id);
+        creditData = await fetchMovieCredits(id);
+      }
+
+      setMovie(movieData);
       setCast(creditData.cast.slice(0, 5));
       setDirectors(creditData.crew.filter((p) => p.job === "Director"));
 

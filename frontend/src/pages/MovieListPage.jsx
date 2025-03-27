@@ -2,15 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchMoviesByGenre } from "../services/tmdbService";
 import { useFilteredGenres } from "../hooks/useFilteredGenres";
-
 import GenreSelector from "../components/GenreSelector";
 import MovieGrid from "../components/MovieGrid";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import LoaderSpinner from "../components/LoaderSpinner";
+import MovieFilters from "../components/MovieFilters";
 
 const MovieListPage = () => {
   const [searchParams] = useSearchParams();
   const initialGenre = searchParams.get("genre");
+  const [sortBy, setSortBy] = useState("popularity.desc");
+  const [language, setLanguage] = useState("");
 
   const { genres, selectedGenre, setSelectedGenre, genreId } =
     useFilteredGenres(initialGenre);
@@ -33,17 +35,30 @@ const MovieListPage = () => {
     if (!genreId) return;
 
     const loadMovies = async () => {
-      const result = await fetchMoviesByGenre(genreId, page);
-      setMovies((prev) => {
-        const newMovies = result.movies.filter(
-          (movie) => !prev.some((m) => m.id === movie.id)
-        );
-        return [...prev, ...newMovies];
-      });
+      const pagesToLoad = page === 1 ? [1, 2] : [page];
+      for (const p of pagesToLoad) {
+        const filters = {
+          sort_by: sortBy,
+          with_original_language: language || undefined,
+        };
+
+        const result = await fetchMoviesByGenre(genreId, p, filters);
+        setMovies((prev) => {
+          const newMovies = result.movies.filter(
+            (movie) => !prev.some((m) => m.id === movie.id)
+          );
+          return [...prev, ...newMovies];
+        });
+      }
     };
 
     loadMovies();
-  }, [genreId, page]);
+  }, [genreId, page, sortBy, language]);
+
+  useEffect(() => {
+    setMovies([]);
+    setPage(1);
+  }, [sortBy, language]);
 
   // infinity scroll observer
   useEffect(() => {
@@ -77,6 +92,12 @@ const MovieListPage = () => {
         genres={genres}
         selectedGenre={selectedGenre}
         setSelectedGenre={setSelectedGenre}
+      />
+      <MovieFilters
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        language={language}
+        setLanguage={setLanguage}
       />
 
       <MovieGrid movies={movies} />

@@ -4,6 +4,7 @@ import { useWishlist } from "../WishlistContext";
 import MovieHeader from "../components/MovieHeader";
 import TrailerEmbed from "../components/TrailerEmbed";
 import SimilarMoviesSlider from "../components/SimilarMoviesSlider";
+import toast from "react-hot-toast";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -23,9 +24,15 @@ const MovieDetailPage = () => {
     return <p className="text-center mt-8 text-zinc-300">Indlæser...</p>;
 
   const toggleWishlist = () => {
-    isInWishlist(movie.id)
-      ? removeFromWishlist(movie.id)
-      : addToWishlist(movie);
+    const isAdded = !isInWishlist(movie.id);
+
+    if (isAdded) {
+      addToWishlist(movie);
+      toast.success("Tilføjet til ønskeliste");
+    } else {
+      removeFromWishlist(movie.id);
+      toast("Fjernet fra ønskeliste");
+    }
   };
 
   return (

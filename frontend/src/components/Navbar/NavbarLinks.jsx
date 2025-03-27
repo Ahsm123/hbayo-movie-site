@@ -13,7 +13,9 @@ export default function NavbarLinks({ setIsOpen }) {
         <li key={path}>
           <NavLink
             to={path}
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              if (setIsOpen) setIsOpen(false);
+            }}
             className={({ isActive }) =>
               `nav-link ${
                 isActive ? "text-yellow-400" : "hover:text-yellow-400"

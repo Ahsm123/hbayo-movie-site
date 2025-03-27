@@ -1,14 +1,18 @@
-# React + Vite
+# React + Vite Movie App
 
 ## Features
 
-- Browse movies
-- View detailed information for each movie
-- Search functionality with instant feedback
-- Trailer
-- Wishlist
-- Similar movies
-- Sidescroll + dropdown on mobile
+- Browse film efter genre
+- Søgning og filtrering
+- Trailers og detaljeret info
+- Ønskeliste
+- Se lignende film
+- Mobilvenlig med sidescroll
+
+## Support
+
+- Desktop (Chrome, Edge)
+- Mobil
 
 ## Tech Stack
 
@@ -16,25 +20,37 @@
 - React
 - Tailwind CSS
 - TMDB REST API
-- React Router
 
-## 📦 Setup & Running Locally
+## Setup
 
-Setup
-
-# 1. Clone the repository
+# 1. Clone repo
 
 git clone https://github.com/Ahsm123/wexo-movie-site.git
 cd wexo-movie-site
 
-# 2. Install dependencies
+# 2. Installer dependencies i frontend folder
 
 npm install
 
-# 3. Create a .env file with your TMDB API key
+# 3. Lav .env fil og tilføj key
 
 echo "VITE_TMDB_API_KEY=your_tmdb_api_key_here" > .env
+brug tmdb v4 Read Access Token (Bearer token)
 
-# 4. Start the dev server
+# 4. Start dev server
 
 npm run dev
+
+## Eksempler
+
+### Forside
+
+![Forside](./screenshots/homepage-desktop.png)
+
+### Detaljer
+
+![Detaljer](./screenshots/moviedetailpage-desktop.png)
+
+### Ønskeliste
+
+![Wishlist](./screenshots/wishlistpage-desktop.png)

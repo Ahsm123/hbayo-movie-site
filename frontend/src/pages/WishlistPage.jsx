@@ -11,7 +11,12 @@ const WishlistPage = () => {
       {wishlist.length === 0 ? (
         <p className="text-gray-500">Ingen film på listen endnu.</p>
       ) : (
-        <div className="flex flex-wrap gap-4">
+        <div
+          className="grid justify-center gap-4 auto-rows-fr"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
+          }}
+        >
           {wishlist.map((movie) => (
             <MovieCard
               key={movie.id}
