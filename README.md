@@ -35,7 +35,7 @@ npm install
 # 3. Lav .env fil og tilføj key
 
 echo "VITE_TMDB_API_KEY=your_tmdb_api_key_here" > .env
-brug tmdb v4 Read Access Token (Bearer token)
+(tmdb v4 Read Access Token)
 
 # 4. Start dev server
 
@@ -45,12 +45,21 @@ npm run dev
 
 ### Forside
 
-![Forside](./frontend/screenshots/homepage-desktop.png)
+![Forside.Desktop](./frontend/screenshots/homepage-desktop.png)
+![Forside.Mobile](./frontend/screenshots/homepage-mobile.png)
+
+
+### Genreside
+
+![Genreside.Desktop](./frontend/screenshots/movielistpage-desktop.png)
 
 ### Detaljer
 
-![Detaljer](./frontend/screenshots/moviedetailpage-desktop.png)
+![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop.png)
+![Detaljer.Desktop](./frontend/screenshots/moviedetailpage-desktop-addtowishlist.png)
+![Detaljer.Mobile](./frontend/screenshots/moviedetailpage-mobile.png)
 
 ### Ønskeliste
 
 ![Wishlist](./frontend/screenshots/wishlistpage-desktop.png)
+
