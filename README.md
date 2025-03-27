@@ -46,6 +46,7 @@ npm run dev
 ### Forside
 
 ![Forside.Desktop](./frontend/screenshots/homepage-desktop.png)
+![Forside.Desktop](./frontend/screenshots/homepage-desktop-search.png)
 ![Forside.Mobile](./frontend/screenshots/homepage-mobile.png)
 
 ### Genreside
