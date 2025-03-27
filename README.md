@@ -55,7 +55,7 @@ npm run dev
 
 ### Genreside
 
-![Genreside.Desktop](./frontend/screenshots/movielistpage-filtersbar.png)
+![Genreside.Desktop](./frontend/screenshots/movielistpage_filtersbar.png)
 
 ### Detaljer
 
