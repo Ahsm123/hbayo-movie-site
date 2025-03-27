@@ -26,16 +26,18 @@
 # 1. Clone repo
 ```bash
 git clone https://github.com/Ahsm123/hbayo-movie-site.git
-cd hbayo-movie-site/frontend
+cd frontend
 ```
 # 2. Installér dependencies
 ```bash
 npm install
 ```
-# 3. Lav .env fil i frontend folder og tilføj key
+# 3. Opret .env fil i 'frontend'-mappen og indsæt:
 
-VITE_TMDB_API_KEY=your_tmdb_api_key_here"
-(tmdb v4 Read Access Token)
+```env
+VITE_TMDB_READ_TOKEN=your_tmdb_read_token_here
+```
+Brug v4 Read Access Token fra TMDB API settings
 
 # 4. Start dev server
 ```bash
